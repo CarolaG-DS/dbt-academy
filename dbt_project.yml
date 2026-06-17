@@ -30,9 +30,25 @@ models:
     bronze:
       +materialized: view
       +schema: bronze
+      +tags: ['bronze', 'daily']
     silver:
       +materialized: view
       +schema: silver
+      +tags: ['silver', 'daily']
     gold:
       +materialized: table
-      +schema: gold 
+      +schema: gold
+      +persist_docs:
+        relation: true
+        columns: true
+      +tags: ['gold', 'daily']
+
+seeds:
+  my_new_project:
+    +schema: raw
+    +column_types:
+      customer_id: integer
+      account_balance: float
+    +persist_docs:
+      relation: true
+      columns: true
