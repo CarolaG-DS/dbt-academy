@@ -6,6 +6,10 @@ models:
       Fact table with one row per order. Aggregates TPC-H orders with customer,
       nation, and line item data. Order status values: O = open, F = fulfilled,
       P = processing. Materialized as an incremental table, updated on each run.
+    data_tests:
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "net_revenue <= gross_revenue"
     columns:
       - name: order_id
         data_tests:
