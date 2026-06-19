@@ -1,0 +1,24 @@
+default:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      threads: 4
+      account: YBIKMNY-UF14488
+      user: DBT_USER
+      database: ANALYTICS
+      warehouse: DBT_WH
+      schema: PUBLIC
+      password: Hello123456789%
+      role: TRANSFORMER
+
+    prod:
+      type: snowflake
+      threads: 8
+      account: YBIKMNY-UF14488
+      user: DBT_USER
+      database: PRODUCTION
+      warehouse: DBT_WH
+      schema: PUBLIC
+      password: Hello123456789%
+      role: TRANSFORMER
