@@ -2,10 +2,12 @@ WITH line_totals AS (
     SELECT * FROM {{ ref('silver_lineitem_totals') }}
 ),
 orders AS (
-    SELECT * FROM {{ ref('bronze_tpch_orders') }}
+    SELECT {{ dbt_utils.star(from=ref('bronze_tpch_orders'), except=["ship_priority"]) }}
+    FROM {{ ref('bronze_tpch_orders') }}
 ),
 customers AS (
-    SELECT * FROM {{ ref('bronze_tpch_customers') }}
+    SELECT {{ dbt_utils.star(from=ref('bronze_tpch_customers'), except=["account_balance", "phone"]) }}
+    FROM {{ ref('bronze_tpch_customers') }}
 ),
 nations AS (
     SELECT * FROM {{ ref('bronze_tpch_nations') }}
