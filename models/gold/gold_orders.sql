@@ -5,6 +5,7 @@
 
 SELECT
     *,
+    YEAR(order_date) AS order_year,
     {{ date_dimensions('order_date') }},
     gross_revenue - net_revenue                                     AS discount_amount,
     ROUND(
